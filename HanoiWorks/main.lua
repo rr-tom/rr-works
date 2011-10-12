@@ -24,6 +24,16 @@ local function setup()
 	ground.x = 240; ground.y = 320
 	physics.addBody( ground, "static", { friction=0.6 } )
 
+	local sticks = {}
+	sticks[1] = display.newImage( "stick.png" )
+	sticks[1].x = 80; sticks[1].y = 142
+	physics.addBody( sticks[1], "static", { isSensor = true  } )
+	sticks[2] = display.newImage( "stick.png" )
+	sticks[2].x = 240; sticks[2].y = 142
+	physics.addBody( sticks[2], "static", { isSensor = true  } )
+	sticks[3] = display.newImage( "stick.png" )
+	sticks[3].x = 400; sticks[3].y = 142
+	physics.addBody( sticks[3], "static", { friction=0.6 } )
 
 	local plate = display.newImage( "plate.png" )
 	plate.x = 80; plate.y = 200
