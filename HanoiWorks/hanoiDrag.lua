@@ -3,6 +3,8 @@
 
 module(..., package.seeall)
 
+local physics = require("physics")
+
 -- A basic function for dragging physics objects
 function startDrag( event )
 	local t = event.target
@@ -41,5 +43,16 @@ function startDrag( event )
 	end
 
 	-- Stop further propagation of touch event!
+	return true
+end
+
+function stickCollision( self, event )
+	if ( event.phase == "began" ) then
+		print( "began: " .. self.myName .. " & " .. event.other.myName )
+		transition.to( event.other, { time=200, x= self.x, transition=easing.outQuad} )
+	elseif ( event.phase == "ended" ) then
+		print( "ended: " .. self.myName .. " & " .. event.other.myName )
+	end
+
 	return true
 end
